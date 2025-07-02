@@ -1,0 +1,51 @@
+{
+  "info": {
+    "name": "FastAPI Auth",
+    "_postman_id": "1a2b3c4d-5e6f-7890-1234-56789abcdef0",
+    "description": "User Registration and JWT Authentication with FastAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"balaji\",\n  \"email\": \"balaji@example.com\",\n  \"password\": \"secret123\"\n}"
+        },
+        "url": { "raw": "http://127.0.0.1:8000/register", "host": ["127.0.0.1"], "port": "8000", "path": ["register"] }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "username", "value": "balaji" },
+            { "key": "password", "value": "secret123" }
+          ]
+        },
+        "url": { "raw": "http://127.0.0.1:8000/login", "host": ["127.0.0.1"], "port": "8000", "path": ["login"] }
+      }
+    },
+    {
+      "name": "Get Profile (Protected)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
+        ],
+        "url": { "raw": "http://127.0.0.1:8000/me", "host": ["127.0.0.1"], "port": "8000", "path": ["me"] }
+      }
+    }
+  ]
+}

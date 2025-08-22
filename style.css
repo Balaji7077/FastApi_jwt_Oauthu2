@@ -1,0 +1,129 @@
+/* Base styles and CSS variables */
+:root {
+  --background: #0f1221;
+  --surface: #171a2b;
+  --surface-2: #20243a;
+  --text: #e8eaf6;
+  --muted: #a9acc4;
+  --accent: #7c5cff;
+  --accent-2: #00d4ff;
+  --danger: #ff5577;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1000px 600px at 10% -10%, rgba(124, 92, 255, 0.25), transparent),
+              radial-gradient(800px 500px at 110% 20%, rgba(0, 212, 255, 0.18), transparent),
+              var(--background);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+}
+
+/* Placeholder App container */
+#app {
+  width: 100%;
+  max-width: 380px;
+  padding: 16px;
+}
+
+/* Calculator */
+.calculator {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.display {
+  background: rgba(0,0,0,0.25);
+  border-radius: 12px;
+  padding: 14px 12px;
+  text-align: right;
+  min-height: 78px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.display .history {
+  color: var(--muted);
+  font-size: 14px;
+  min-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.display .current {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.keys {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.key {
+  background: linear-gradient(180deg, #262a43, #1e2237);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.05s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.key:hover {
+  filter: brightness(1.08);
+}
+
+.key:active, .key.is-pressed {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.35), inset 0 2px 4px rgba(0,0,0,0.35);
+}
+
+.key-op {
+  background: linear-gradient(180deg, #2c2f4d, #242744);
+  color: #cfe0ff;
+}
+
+.key-func {
+  background: linear-gradient(180deg, #2a2741, #221f38);
+  color: #ffd7e0;
+}
+
+.key-equal {
+  background: linear-gradient(180deg, var(--accent), #5b3cff);
+  color: white;
+}
+
+/* Wide zero */
+.key[data-digit="0"] {
+  grid-column: span 1;
+}
+
+/* Responsive improvements */
+@media (max-width: 380px) {
+  .display .current { font-size: 28px; }
+  .key { padding: 12px 0; font-size: 16px; }
+}
